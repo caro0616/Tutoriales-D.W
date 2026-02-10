@@ -1,24 +1,32 @@
 import type { Request, Response } from "express";
+import { books } from "../data/books.js";
+import { Book } from "../models/Book.js";
 
 export class HomeController {
   static index(req: Request, res: Response): void {
-    const viewData: { [key: string]: any } = {};
-    viewData["title"] = "Home";
-
-    res.render("home/index", { viewData: viewData });
+    res.render("home/index", { viewData: { title: "Home" } });
   }
 
   static about(req: Request, res: Response): void {
-    const viewData: { [key: string]: any } = {};
-    viewData["title"] = "About";
-
-    res.render("home/about", { viewData: viewData });
+    res.render("home/about", { viewData: { title: "About" } });
   }
 
   static contact(req: Request, res: Response): void {
-    const viewData: { [key: string]: any } = {};
-    viewData["title"] = "Contact";
+    res.render("home/contact", { viewData: { title: "Contact" } });
+  }
 
-    res.render("home/contact", { viewData: viewData });
+  static mainPoint(req: Request, res: Response): void {
+    res.render("home/books", {
+      viewData: { title: "Books" },
+      books: books,
+    });
+  }
+
+  static show(req: Request, res: Response): void {
+    const book = Book.findById(books, Number(req.params.id));
+    res.render("home/show", {
+      viewData: { title: book.title },
+      book: book,
+    });
   }
 }

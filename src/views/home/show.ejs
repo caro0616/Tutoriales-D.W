@@ -1,0 +1,9 @@
+<%- contentFor('content') %>
+
+<section class="max-w-4xl mx-auto bg-white p-8 rounded shadow">
+  <h2 class="text-2xl font-bold mb-4"><%= book.title %></h2>
+
+  <p><strong>Category:</strong> <%= book.category %></p>
+  <p><strong>Price:</strong> $<%= book.price %></p>
+  <p><strong>Stock:</strong> <%= book.stock %></p>
+</section>
